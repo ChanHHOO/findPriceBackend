@@ -1,6 +1,5 @@
 //https://sundries-in-myidea.tistory.com/71
 
-//https://goddaehee.tistory.com/203?category=367461
 package project.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
