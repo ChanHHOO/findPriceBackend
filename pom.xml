@@ -56,8 +56,14 @@
             <version>1.18.2</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
     </dependencies>
     <build>
+        <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -93,7 +99,7 @@
                             <goal>npm</goal>
                         </goals>
                             <configuration>
-                            <arguments>install --no-optional</arguments>
+                            <arguments>install no-optional</arguments>
                         </configuration>
                     </execution>
                     <execution>
