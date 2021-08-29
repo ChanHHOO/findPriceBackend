@@ -36,7 +36,7 @@ public class DaangnCrawlingService {
         options.setCapability("ignoreProtectedModeSettings", true);
         
         //do not show browser and etc..
-        //options.addArguments("--headless");
+        //options.addArguments("--headless"); << without new browser
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         
@@ -55,11 +55,12 @@ public class DaangnCrawlingService {
         
         seleniumSetup();
 
-        //element = driver.findElement(By.className("ico_mail"));
-
-        // Document doc = Jsoup.connect(DAANGN_SEARCHED_DATA_URL).get();
-        // Elements contents = doc.select("p.article-price");
-        // System.out.println(">>>>>>>>>>>>>"+element.getText());
+        element = driver.findElement(By.className("more-btn"));
+        element.click();
+        //Document doc = Jsoup.connect(DAANGN_SEARCHED_DATA_URL).get();
+        //Elements contents = doc.select("p.article-price");
+        System.out.println(">>>>>>>>>>>>"+element.getText());
         
     }
 }
+
