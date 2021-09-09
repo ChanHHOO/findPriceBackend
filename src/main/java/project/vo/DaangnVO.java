@@ -8,6 +8,15 @@ public
 class DaangnVO{
     private String itemTitle;
     private String itemPrice;
+    private String searchItem;
+
+    public String getSearchItem() {
+        return this.searchItem;
+    }
+
+    public void setSearchItem(String searchItem) {
+        this.searchItem = searchItem;
+    }
 
     public String getItemTitle() {
         return this.itemTitle;
