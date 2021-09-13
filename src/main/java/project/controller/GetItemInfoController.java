@@ -5,6 +5,7 @@ package project.controller;
 import project.vo.*;
 import project.service.DaangnService;
 import java.util.List;
+import java.io.IOException;
 import java.util.HashMap;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,12 +25,15 @@ public class GetItemInfoController {
 
 	@Autowired
 	DaangnService daangnService;
+	DaangnVO daangnData;
 	// proxy fix
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST, value="/getDaangnData")
-	public List<DaangnVO> daangnRequest(@RequestBody DaangnVO daangnObj){
-
+	public List<DaangnVO> daangnRequest(@RequestBody DaangnVO daangnVO) throws IOException{
+		// requestbody에서 매핑해줌
+		// System.out.println(daangnObj.getSearchItem());
+		daangnService.getDaangnSearchedDatas();
 		List<DaangnVO> testList = daangnService.searchItemPrice();
 		return testList;
 	}

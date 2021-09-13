@@ -41,21 +41,16 @@ public class DaangnCrawlingService {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         
-        // proxy issue fix
-        //options.addArguments("--whitelisted-ips='naver.com'");
-        //options.addArguments("--proxy-server=https://springwithreact-mpuut.run.goorm.io/");
-        
         driver = new ChromeDriver(options);
     
         driver.get(DAANGN_SEARCHED_DATA_URL);
     }
     //javaws 찾아내기.
-    // 대분자Kjs 751300@@aa
     @PostConstruct
     public void getDaangnSearchedDatas() throws IOException{
         
         seleniumSetup();
-
+        
         element = driver.findElement(By.className("more-btn"));
         element.click();
         System.out.println(">>>>>>>>>>>>"+element.getText());

@@ -8,7 +8,7 @@ public
 class DaangnVO{
     private String itemTitle;
     private String itemPrice;
-    private String searchItem;
+    public String searchItem;
 
     public String getSearchItem() {
         return this.searchItem;

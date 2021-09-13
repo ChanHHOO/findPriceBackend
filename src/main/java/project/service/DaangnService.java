@@ -25,11 +25,11 @@ public class DaangnService {
 
     @Autowired
     public DaangnMapper mapper;
-
+    DaangnVO daangnVO;
     //WebDriver setup
     private WebDriver driver;
     private WebElement element;
-    private String url;
+    
     
     //Properties setup
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
@@ -56,14 +56,14 @@ public class DaangnService {
         driver.get(DAANGN_URL);
     }
     //javaws 찾아내기.
-    @PostConstruct
+    
     public void getDaangnSearchedDatas() throws IOException{
-        DAANGN_URL += "에어컨";
+        DAANGN_URL += daangnVO.getSearchItem();
         seleniumSetup();
         
         element = driver.findElement(By.className("more-btn"));
         element.click();
-        System.out.println(">>>>>>>>>>>>"+element.getText());
+        System.out.println("");
         
     }
 
