@@ -3,13 +3,14 @@ package project.service;
 import project.mapper.DaangnMapper;
 import project.vo.DaangnVO;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 import java.io.IOException;
-import javax.annotation.PostConstruct;
+
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.stereotype.Service;
 
 import org.openqa.selenium.By;
@@ -17,19 +18,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
+import javax.annotation.PostConstruct;
 
 
 @Service
 public class DaangnService {
 
     @Autowired
+    public DaangnVO daangnVO;
+
+    @Autowired
     public DaangnMapper mapper;
-    DaangnVO daangnVO;
+    
     //WebDriver setup
     private WebDriver driver;
-    private WebElement element;
-    
+    private WebElement moreBtn;
+    private List <WebElement> articleTitle;
+    private List <WebElement> articlePrice;
     
     //Properties setup
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
@@ -55,19 +60,47 @@ public class DaangnService {
     
         driver.get(DAANGN_URL);
     }
-    //javaws 찾아내기.
     
-    public void getDaangnSearchedDatas() throws IOException{
-        DAANGN_URL += daangnVO.getSearchItem();
+    public void getDaangnSearchedData(String searchItem) throws IOException{
+        DAANGN_URL += searchItem;
         seleniumSetup();
         
-        element = driver.findElement(By.className("more-btn"));
-        element.click();
-        System.out.println("");
+        try{
+            moreBtn = driver.findElement(By.className("more-btn"));
+            for(int count = 0 ; count < 50; count++){
+                
+                moreBtn.click();
+            }
+            // 브라우저에 출력하는 시간을 고려하여 10초 대기.
+            Thread.sleep(10000);
+            articlePrice = driver.findElements(By.className("article-price"));
+            articleTitle = driver.findElements(By.className("article-title"));
+            
+            System.out.println();
+            Map<String, Integer> aricleData = new HashMap<String, Integer>();
+            for(int i = 0 ; i < articlePrice.size(); i++){
+                String[] ss = articlePrice.get(i).getAttribute("innerText").substring(0, articlePrice.get(0).getAttribute("innerText").length()-1).split(",");
+                String s = String.join("", ss);
+                System.out.println(s);
+                // Integer price = Integer.parseInt();
+                // System.out.println(price);
+                // aricleData.put(articleTitle, price);
+                
+            }
+            DAANGN_URL = "https://www.daangn.com/search/";
+            
+        }catch(InterruptedException  e){
+            DAANGN_URL = "https://www.daangn.com/search/";
+            e.printStackTrace();
+        }
+        
+        // price info
+        //document.getElementsByClassName("flea-market-article-link")[0].getElementsByClassName("article-price")[0].innerText
+        
         
     }
-
     public List<DaangnVO> searchItemPrice(){
+
         return mapper.searchItemPrice();
     }
 }

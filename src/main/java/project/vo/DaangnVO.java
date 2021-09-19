@@ -2,10 +2,13 @@ package project.vo;
 
 import lombok.*;
 
+import org.springframework.stereotype.Repository;
+
+
 @Getter
 @Setter
-public
-class DaangnVO{
+@Repository
+public class DaangnVO{
     private String itemTitle;
     private String itemPrice;
     public String searchItem;
