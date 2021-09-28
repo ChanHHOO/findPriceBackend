@@ -63,6 +63,7 @@ public class DaangnService {
     
     public void getDaangnSearchedData(String searchItem) throws IOException{
         DAANGN_URL += searchItem;
+        System.out.println(searchItem);
         seleniumSetup();
         
         try{
@@ -76,12 +77,16 @@ public class DaangnService {
             articlePrice = driver.findElements(By.className("article-price"));
             articleTitle = driver.findElements(By.className("article-title"));
             
-            System.out.println();
             Map<String, Integer> aricleData = new HashMap<String, Integer>();
             for(int i = 0 ; i < articlePrice.size(); i++){
-                String[] ss = articlePrice.get(i).getAttribute("innerText").substring(0, articlePrice.get(0).getAttribute("innerText").length()-1).split(",");
-                String s = String.join("", ss);
-                System.out.println(s);
+                String priceStr = String.join("", articlePrice.get(i).getAttribute("innerText").substring(0, articlePrice.get(i).getAttribute("innerText").length()-1).split(","));
+                if(priceStr != ""){
+                    String s = priceStr.join("", priceStr);
+
+                }
+                // String[] ss = articlePrice.get(i).getAttribute("innerText").substring(0, articlePrice.get(0).getAttribute("innerText").length()-1).split(",");
+                // String s = String.join("", ss);
+                // System.out.println(s);
                 // Integer price = Integer.parseInt();
                 // System.out.println(price);
                 // aricleData.put(articleTitle, price);
