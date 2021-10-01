@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.io.IOException;
-
-
+import java.util.Map.Entry;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,9 +33,10 @@ public class DaangnService {
     //WebDriver setup
     private WebDriver driver;
     private WebElement moreBtn;
-    private List <WebElement> articleTitle;
+    private List <WebElement> articleImg;
     private List <WebElement> articlePrice;
-    
+    private List <WebElement> articleObj;
+
     //Properties setup
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
     public static String WEB_DRIVER_PATH = "chromedriver.exe";
@@ -60,11 +61,29 @@ public class DaangnService {
     
         driver.get(DAANGN_URL);
     }
-    
+    public static boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+    public static void setDaangnSearchedData(Map articleDatas){
+        articleDatas.forEach((k,v)->System.out.println(k+"="+v));
+        System.out.println("<<=========================>>"+articleDatas.size());
+        List<Entry<String, Integer>> list = new ArrayList<>(articleDatas.entrySet());
+        list.sort(Entry.comparingByValue());
+        list.forEach(System.out::println);
+    }
+
+
     public void getDaangnSearchedData(String searchItem) throws IOException{
         DAANGN_URL += searchItem;
         System.out.println(searchItem);
         seleniumSetup();
+
+
         
         try{
             moreBtn = driver.findElement(By.className("more-btn"));
@@ -74,29 +93,29 @@ public class DaangnService {
             }
             // 브라우저에 출력하는 시간을 고려하여 10초 대기.
             Thread.sleep(10000);
+
             articlePrice = driver.findElements(By.className("article-price"));
-            articleTitle = driver.findElements(By.className("article-title"));
-            
-            Map<String, Integer> aricleData = new HashMap<String, Integer>();
+            articleImg = driver.findElements(By.className("card-photo"));
+            //articleObj = driver.findElements(By.className("flea-market-article flat-card"));
+
+            Map<String, Integer> articleDatas = new HashMap<String, Integer>();
             for(int i = 0 ; i < articlePrice.size(); i++){
                 String priceStr = String.join("", articlePrice.get(i).getAttribute("innerText").substring(0, articlePrice.get(i).getAttribute("innerText").length()-1).split(","));
-                if(priceStr != ""){
-                    String s = priceStr.join("", priceStr);
-
+                String imgStr = articleImg.get(i).findElement(By.tagName("img")).getAttribute("src");
+                if(isInteger(priceStr)){
+                    Integer price = Integer.parseInt(priceStr.join("", priceStr));
+                    articleDatas.put(imgStr, price);
                 }
-                // String[] ss = articlePrice.get(i).getAttribute("innerText").substring(0, articlePrice.get(0).getAttribute("innerText").length()-1).split(",");
-                // String s = String.join("", ss);
-                // System.out.println(s);
-                // Integer price = Integer.parseInt();
-                // System.out.println(price);
-                // aricleData.put(articleTitle, price);
-                
             }
+            setDaangnSearchedData(articleDatas);
             DAANGN_URL = "https://www.daangn.com/search/";
             
         }catch(InterruptedException  e){
             DAANGN_URL = "https://www.daangn.com/search/";
+            
             e.printStackTrace();
+        } finally{
+            DAANGN_URL = "https://www.daangn.com/search/";
         }
         
         // price info

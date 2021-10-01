@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface DaangnMapper {
     List<DaangnVO> searchItemPrice();
+    
 }
