@@ -31,7 +31,7 @@ public class DaangnService {
     public DaangnMapper mapper;
     
     //WebDriver setup
-    private WebDriver driver;
+    private static WebDriver driver;
     private WebElement moreBtn;
     private List <WebElement> articleImg;
     private List <WebElement> articlePrice;
@@ -41,7 +41,12 @@ public class DaangnService {
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
     public static String WEB_DRIVER_PATH = "chromedriver.exe";
     private static String DAANGN_URL = "https://www.daangn.com/search/";
-    
+    int avrItemPrice = 0;
+    int maxItemPrice = -1;
+    int minItemPrcie = Integer.MAX_VALUE;
+    String maxImgStr;
+    String minImgStr;
+
     //selenium setup
     public void seleniumSetup(){
         //System Property Setup
@@ -69,12 +74,12 @@ public class DaangnService {
             return false;
         }
     }
-    public static void setDaangnSearchedData(Map articleDatas){
-        articleDatas.forEach((k,v)->System.out.println(k+"="+v));
-        System.out.println("<<=========================>>"+articleDatas.size());
-        List<Entry<String, Integer>> list = new ArrayList<>(articleDatas.entrySet());
-        list.sort(Entry.comparingByValue());
-        list.forEach(System.out::println);
+    public void setDaangnSearchedData(String searchedItem){
+        // articleDatas.forEach((k,v)->System.out.println(k+"="+v));
+        // List<Entry<String, Integer>> list = new ArrayList<>(articleDatas.entrySet());
+        // list.sort(Entry.comparingByValue());
+        mapper.insertDaangnSearcedDatas(searchedItem, maxImgStr, minImgStr, avrItemPrice, maxItemPrice, minItemPrcie);
+        // list.forEach(System.out::println);
     }
 
 
@@ -96,18 +101,31 @@ public class DaangnService {
 
             articlePrice = driver.findElements(By.className("article-price"));
             articleImg = driver.findElements(By.className("card-photo"));
+            System.out.println(articlePrice.size() +"<<<<<>>>>>>"+articleImg.size());
             //articleObj = driver.findElements(By.className("flea-market-article flat-card"));
 
             Map<String, Integer> articleDatas = new HashMap<String, Integer>();
-            for(int i = 0 ; i < articlePrice.size(); i++){
-                String priceStr = String.join("", articlePrice.get(i).getAttribute("innerText").substring(0, articlePrice.get(i).getAttribute("innerText").length()-1).split(","));
-                String imgStr = articleImg.get(i).findElement(By.tagName("img")).getAttribute("src");
+            int idx = 0;
+            for(idx = 0 ; idx < articlePrice.size(); idx++){
+                String priceStr = String.join("", articlePrice.get(idx).getAttribute("innerText").substring(0, articlePrice.get(idx).getAttribute("innerText").length()-1).split(","));
+                String imgStr = articleImg.get(idx).findElement(By.tagName("img")).getAttribute("src");
                 if(isInteger(priceStr)){
                     Integer price = Integer.parseInt(priceStr.join("", priceStr));
-                    articleDatas.put(imgStr, price);
+                    avrItemPrice += price;
+                    if(price > maxItemPrice){
+                        maxItemPrice = price;
+                        maxImgStr = imgStr;
+                    }
+                    if(price < minItemPrcie){
+                        minItemPrcie = price;
+                        minImgStr = imgStr;
+                    }
                 }
             }
-            setDaangnSearchedData(articleDatas);
+            System.out.println(maxItemPrice +"============"+ minItemPrcie);
+            avrItemPrice /= idx;
+
+            setDaangnSearchedData(searchItem);
             DAANGN_URL = "https://www.daangn.com/search/";
             
         }catch(InterruptedException  e){

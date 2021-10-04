@@ -41,7 +41,7 @@ public class GetItemInfoController {
 
 		tmp.add(daangnVO);
 		daangnService.getDaangnSearchedData(daangnVO.getSearchItem());
-		List<DaangnVO> testList = daangnService.searchItemPrice();
+		// List<DaangnVO> testList = daangnService.searchItemPrice();
 		return tmp;
 	}
 }

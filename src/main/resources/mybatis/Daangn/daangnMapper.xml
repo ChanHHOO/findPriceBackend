@@ -4,4 +4,16 @@
     <select id="searchItemPrice" resultType="DaangnVO">
         SELECT * FROM NAME
     </select>
+    <insert id="insertDaangnSearcedDatas">
+        INSERT INTO articles(
+            article_title, 
+            article_avrPrice,
+            article_maxPrice,
+            article_minPrice,
+            article_maxImgStr,
+            article_minImgStr)
+        VALUE(#{itemTitle}, #{avrItemPrice}, #{maxItemPrice}, #{minItemPrice}, #{maxImgSrc}, #{minImgSrc});
+    </insert>
 </mapper>
+
+
