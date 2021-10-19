@@ -41,11 +41,18 @@ public class DaangnService {
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
     public static String WEB_DRIVER_PATH = "chromedriver.exe";
     private static String DAANGN_URL = "https://www.daangn.com/search/";
+
+    //local val
+    int articleCount = 0;
     int avrItemPrice = 0;
     int maxItemPrice = -1;
     int minItemPrcie = Integer.MAX_VALUE;
     String maxImgStr;
     String minImgStr;
+    String maxArticleTitle;
+    String minArticleTitle;
+    String updateTime;
+    private List<Integer> articlePriceList;
 
     //selenium setup
     public void seleniumSetup(){
@@ -74,72 +81,81 @@ public class DaangnService {
             return false;
         }
     }
+    public List<DaangnVO> getDaangnSearchedData(String searchedItem){
+        // System.out.println(mapper.selectDaangnSearcedDatas(searchedItem).getArticle_title());
+        
+        return mapper.selectDaangnSearcedDatas(searchedItem);
+    }
     public void setDaangnSearchedData(String searchedItem){
-        // articleDatas.forEach((k,v)->System.out.println(k+"="+v));
-        // List<Entry<String, Integer>> list = new ArrayList<>(articleDatas.entrySet());
-        // list.sort(Entry.comparingByValue());
-        mapper.insertDaangnSearcedDatas(searchedItem, maxImgStr, minImgStr, avrItemPrice, maxItemPrice, minItemPrcie);
+
+        mapper.insertDaangnSearcedDatas(
+            searchedItem, 
+            maxArticleTitle,
+            minArticleTitle,
+            maxImgStr, 
+            minImgStr, 
+            avrItemPrice, 
+            maxItemPrice, 
+            minItemPrcie,
+            articleCount);
         // list.forEach(System.out::println);
     }
 
 
-    public void getDaangnSearchedData(String searchItem) throws IOException{
+    public List<DaangnVO> updateDaangnSearchedData(String searchItem) throws IOException{
         DAANGN_URL += searchItem;
-        System.out.println(searchItem);
+        System.out.println(DAANGN_URL);
         seleniumSetup();
 
-
-        
         try{
             moreBtn = driver.findElement(By.className("more-btn"));
             for(int count = 0 ; count < 50; count++){
-                
                 moreBtn.click();
             }
             // 브라우저에 출력하는 시간을 고려하여 10초 대기.
-            Thread.sleep(10000);
+            Thread.sleep(1000);
 
             articlePrice = driver.findElements(By.className("article-price"));
             articleImg = driver.findElements(By.className("card-photo"));
             System.out.println(articlePrice.size() +"<<<<<>>>>>>"+articleImg.size());
-            //articleObj = driver.findElements(By.className("flea-market-article flat-card"));
-
-            Map<String, Integer> articleDatas = new HashMap<String, Integer>();
-            int idx = 0;
-            for(idx = 0 ; idx < articlePrice.size(); idx++){
-                String priceStr = String.join("", articlePrice.get(idx).getAttribute("innerText").substring(0, articlePrice.get(idx).getAttribute("innerText").length()-1).split(","));
-                String imgStr = articleImg.get(idx).findElement(By.tagName("img")).getAttribute("src");
-                if(isInteger(priceStr)){
-                    Integer price = Integer.parseInt(priceStr.join("", priceStr));
-                    avrItemPrice += price;
-                    if(price > maxItemPrice){
-                        maxItemPrice = price;
-                        maxImgStr = imgStr;
-                    }
-                    if(price < minItemPrcie){
-                        minItemPrcie = price;
-                        minImgStr = imgStr;
-                    }
-                }
-            }
-            System.out.println(maxItemPrice +"============"+ minItemPrcie);
-            avrItemPrice /= idx;
-
-            setDaangnSearchedData(searchItem);
-            DAANGN_URL = "https://www.daangn.com/search/";
+            articleObj = driver.findElements(By.className("flea-market-article-link"));
+            System.out.println(articleObj.get(0).findElement(By.className("article-title")).getText());
+            
             
         }catch(InterruptedException  e){
             DAANGN_URL = "https://www.daangn.com/search/";
-            
             e.printStackTrace();
         } finally{
             DAANGN_URL = "https://www.daangn.com/search/";
         }
+
+        int idx = 0;
+            for(idx = 0 ; idx < articlePrice.size(); idx++){
+                String priceStr = String.join("", articleObj.get(idx).findElement(By.className("article-price")).getAttribute("innerText").substring(0, articlePrice.get(idx).getAttribute("innerText").length()-1).split(","));
+                String imgStr = articleObj.get(idx).findElement(By.tagName("img")).getAttribute("src");
+                if(isInteger(priceStr)){
+                    Integer price = Integer.parseInt(priceStr.join("", priceStr));
+                    avrItemPrice += price;
+                    articleCount += 1;
+                    if(price > maxItemPrice){
+                        maxItemPrice = price;
+                        maxImgStr = imgStr;
+                        maxArticleTitle = articleObj.get(idx).findElement(By.className("article-title")).getText();
+                        
+                    }
+                    if(price < minItemPrcie){
+                        minItemPrcie = price;
+                        minImgStr = imgStr;
+                        minArticleTitle = articleObj.get(idx).findElement(By.className("article-title")).getText();
+                    }
+                }
+            }
+            
+        avrItemPrice /= articleCount;
+        DAANGN_URL = "https://www.daangn.com/search/";
+        setDaangnSearchedData(searchItem);
         
-        // price info
-        //document.getElementsByClassName("flea-market-article-link")[0].getElementsByClassName("article-price")[0].innerText
-        
-        
+        return getDaangnSearchedData(searchItem);
     }
     public List<DaangnVO> searchItemPrice(){
 

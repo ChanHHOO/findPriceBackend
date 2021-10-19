@@ -34,14 +34,16 @@ public class GetItemInfoController {
 	// proxy fix
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@ResponseBody
-	@RequestMapping(method=RequestMethod.POST, value="/getDaangnData")
-	public List<DaangnVO> daangnRequest(@RequestBody DaangnVO daangnVO) throws IOException{
+	@RequestMapping(method=RequestMethod.POST, value="/updateDaangnData")
+	public List<DaangnVO> updateDaangnData(@RequestBody DaangnVO daangnVO) throws IOException{
 		// requestbody에서 매핑해줌
-		List tmp = new ArrayList();
+		return daangnService.updateDaangnSearchedData(daangnVO.getSearchItem());
+	}
 
-		tmp.add(daangnVO);
-		daangnService.getDaangnSearchedData(daangnVO.getSearchItem());
-		// List<DaangnVO> testList = daangnService.searchItemPrice();
-		return tmp;
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@ResponseBody
+	@RequestMapping(method=RequestMethod.POST, value="/getDaangnData")
+	public List<DaangnVO> getDaangnData(@RequestBody DaangnVO daangnVO) throws IOException{
+		return daangnService.getDaangnSearchedData(daangnVO.getSearchItem());
 	}
 }
