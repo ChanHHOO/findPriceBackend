@@ -22,6 +22,42 @@ public class DaangnVO{
     private String article_minPrice;
     private String article_maxImgStr;
     private String article_minImgStr;
+    private String article_maxArticleTitle;
+    private String article_minArticleTitle;
+    private String article_count;
+    private String article_updateTime;
+
+    public String getArticle_maxArticleTitle() {
+        return this.article_maxArticleTitle;
+    }
+
+    public void setArticle_maxArticleTitle(String article_maxArticleTitle) {
+        this.article_maxArticleTitle = article_maxArticleTitle;
+    }
+
+    public String getArticle_minArticleTitle() {
+        return this.article_minArticleTitle;
+    }
+
+    public void setArticle_minArticleTitle(String article_minArticleTitle) {
+        this.article_minArticleTitle = article_minArticleTitle;
+    }
+
+    public String getArticle_count() {
+        return this.article_count;
+    }
+
+    public void setArticle_count(String article_count) {
+        this.article_count = article_count;
+    }
+
+    public String getArticle_updateTime() {
+        return this.article_updateTime;
+    }
+
+    public void setArticle_updateTime(String article_updateTime) {
+        this.article_updateTime = article_updateTime;
+    }
 
     public String getArticle_id() {
         return this.article_id;
