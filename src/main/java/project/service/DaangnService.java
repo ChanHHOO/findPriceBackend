@@ -98,7 +98,9 @@ public class DaangnService {
     }
     public void setDaangnSearchedData(String searchedItem){
         
-        chartObj.getDomainData(articlePriceList, avrItemPrice * articleCount, articleCount);
+        chartObj.getDomainData(articlePriceList, maxItemPrice / 4, articleCount);
+        System.out.println(">>>>>>>>>>>>>>>>>"+chartObj.xDomain.get(2));
+
         mapper.insertDaangnSearcedDatas(
             searchedItem, 
             maxArticleTitle,
@@ -108,8 +110,15 @@ public class DaangnService {
             avrItemPrice, 
             maxItemPrice, 
             minItemPrcie,
-            articleCount);
-            
+            articleCount,
+            chartObj.xDomain.get(0),
+            chartObj.xDomain.get(1),
+            chartObj.xDomain.get(2),
+            chartObj.xDomain.get(3),
+            chartObj.chartData.get(0),
+            chartObj.chartData.get(1),
+            chartObj.chartData.get(2),
+            chartObj.chartData.get(3));
         initialSet();
         
     }
@@ -130,7 +139,6 @@ public class DaangnService {
 
             articlePrice = driver.findElements(By.className("article-price"));
             articleImg = driver.findElements(By.className("card-photo"));
-            System.out.println(articlePrice.size() +"<<<<<>>>>>>"+articleImg.size());
             articleObj = driver.findElements(By.className("flea-market-article-link"));
             
             
@@ -165,7 +173,6 @@ public class DaangnService {
                     }
                 }
             }
-            
         avrItemPrice /= articleCount;
         DAANGN_URL = "https://www.daangn.com/search/";
         setDaangnSearchedData(searchItem);

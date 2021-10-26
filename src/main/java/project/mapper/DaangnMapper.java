@@ -20,5 +20,13 @@ public interface DaangnMapper {
         int avrItemPrice,
         int maxItemPrice,
         int minItemPrice,
-        int articleCount);
+        int articleCount,
+        String chartDomain_firstX,
+        String chartDomain_secondX,
+        String chartDomain_thirdX,
+        String chartDomain_fourthX,
+        Integer chartData_firstY,
+        Integer chartData_secondY,
+        Integer chartData_thirdY,
+        Integer chartData_fourthY);
 }

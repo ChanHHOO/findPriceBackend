@@ -12,20 +12,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ChartDataManufacture {
-    public void getDomainData(List<Integer> articlePrices, int sumPrice, int articleCount){
-        
-        int axisVal = sumPrice / 4;
-        System.out.println(axisVal);
-        List<String> xDomain = new ArrayList<String>();
-        List<Integer> chartData = new ArrayList<Integer>(){
-            {
-                add(0);
-                add(0);
-                add(0);
-                add(0);
-            }
-        };
-
+    List<String> xDomain = new ArrayList<String>();
+    List<Integer> chartData = new ArrayList<Integer>() {
+        {
+            add(0);
+            add(0);
+            add(0);
+            add(0);
+        }
+    };
+    public void getDomainData(List<Integer> articlePrices, int axisVal, int articleCount){
         for(int i = 1; i < 5 ; i++){
             xDomain.add(Integer.toString(axisVal * (i-1)) + " ~ " + Integer.toString(axisVal*i));
         }
@@ -47,11 +43,5 @@ public class ChartDataManufacture {
         for (int i = 0; i < 4; i++){
             System.out.println(xDomain.get(i) +" "+ chartData.get(i));
         }
-
-
-        
-
-        
-
     }
 }
