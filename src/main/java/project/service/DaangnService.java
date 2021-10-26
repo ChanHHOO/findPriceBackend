@@ -2,6 +2,7 @@ package project.service;
 
 import project.mapper.DaangnMapper;
 import project.vo.DaangnVO;
+import project.service.ChartDataManufacture;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +31,9 @@ public class DaangnService {
     @Autowired
     public DaangnMapper mapper;
     
+    @Autowired
+    public ChartDataManufacture chartObj;
+
     //WebDriver setup
     private static WebDriver driver;
     private WebElement moreBtn;
@@ -52,7 +56,7 @@ public class DaangnService {
     String maxArticleTitle;
     String minArticleTitle;
     String updateTime;
-    private List<Integer> articlePriceList;
+    List<Integer> articlePriceList = new ArrayList<Integer>();
 
     //selenium setup
     public void seleniumSetup(){
@@ -73,6 +77,13 @@ public class DaangnService {
     
         driver.get(DAANGN_URL);
     }
+
+    public void initialSet(){
+        maxItemPrice = -1;
+        minItemPrcie = Integer.MAX_VALUE;
+        
+    }
+
     public static boolean isInteger(String str) {
         try {
             Integer.parseInt(str);
@@ -83,10 +94,12 @@ public class DaangnService {
     }
     public List<DaangnVO> getDaangnSearchedData(String searchedItem){
         // System.out.println(mapper.selectDaangnSearcedDatas(searchedItem).getArticle_title());
-        
         return mapper.selectDaangnSearcedDatas(searchedItem);
     }
     public void setDaangnSearchedData(String searchedItem){
+        
+        chartObj.getDomainData(articlePriceList, maxItemPrice / 4, articleCount);
+        System.out.println(">>>>>>>>>>>>>>>>>"+chartObj.xDomain.get(2));
 
         mapper.insertDaangnSearcedDatas(
             searchedItem, 
@@ -97,8 +110,17 @@ public class DaangnService {
             avrItemPrice, 
             maxItemPrice, 
             minItemPrcie,
-            articleCount);
-        // list.forEach(System.out::println);
+            articleCount,
+            chartObj.xDomain.get(0),
+            chartObj.xDomain.get(1),
+            chartObj.xDomain.get(2),
+            chartObj.xDomain.get(3),
+            chartObj.chartData.get(0),
+            chartObj.chartData.get(1),
+            chartObj.chartData.get(2),
+            chartObj.chartData.get(3));
+        initialSet();
+        
     }
 
 
@@ -113,13 +135,11 @@ public class DaangnService {
                 moreBtn.click();
             }
             // 브라우저에 출력하는 시간을 고려하여 10초 대기.
-            Thread.sleep(1000);
+            Thread.sleep(10000);
 
             articlePrice = driver.findElements(By.className("article-price"));
             articleImg = driver.findElements(By.className("card-photo"));
-            System.out.println(articlePrice.size() +"<<<<<>>>>>>"+articleImg.size());
             articleObj = driver.findElements(By.className("flea-market-article-link"));
-            System.out.println(articleObj.get(0).findElement(By.className("article-title")).getText());
             
             
         }catch(InterruptedException  e){
@@ -137,6 +157,9 @@ public class DaangnService {
                     Integer price = Integer.parseInt(priceStr.join("", priceStr));
                     avrItemPrice += price;
                     articleCount += 1;
+                    
+                    articlePriceList.add(price);
+
                     if(price > maxItemPrice){
                         maxItemPrice = price;
                         maxImgStr = imgStr;
@@ -150,7 +173,6 @@ public class DaangnService {
                     }
                 }
             }
-            
         avrItemPrice /= articleCount;
         DAANGN_URL = "https://www.daangn.com/search/";
         setDaangnSearchedData(searchItem);

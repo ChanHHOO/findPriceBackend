@@ -14,8 +14,16 @@
             article_minImgStr,
             article_maxArticleTitle,
             article_minArticleTitle,
-            article_count)
-        VALUE(#{itemTitle}, #{avrItemPrice}, #{maxItemPrice}, #{minItemPrice}, #{maxImgSrc}, #{minImgSrc}, #{maxArticleTitle}, #{minArticleTitle}, #{articleCount});
+            article_count,
+            chartDomain_firstX,
+            chartDomain_secondX,
+            chartDomain_thirdX,
+            chartDomain_fourthX,
+            chartData_firstY,
+            chartData_secondY,
+            chartData_thirdY,
+            chartData_fourthY)
+        VALUE(#{itemTitle}, #{avrItemPrice}, #{maxItemPrice}, #{minItemPrice}, #{maxImgSrc}, #{minImgSrc}, #{maxArticleTitle}, #{minArticleTitle}, #{articleCount}, #{chartDomain_firstX}, #{chartDomain_secondX}, #{chartDomain_thirdX}, #{chartDomain_fourthX}, #{chartData_firstY}, #{chartData_secondY}, #{chartData_thirdY}, #{chartData_fourthY});
     </insert>
 </mapper>
 
