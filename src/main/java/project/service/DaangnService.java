@@ -19,8 +19,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import javax.annotation.PostConstruct;
-
+import org.springframework.scheduling.annotation.Async;
 
 @Service
 public class DaangnService {
@@ -58,6 +57,9 @@ public class DaangnService {
     String updateTime;
     List<Integer> articlePriceList = new ArrayList<Integer>();
 
+    public void DaangnService(){
+        System.out.println("service thread start");
+    }
     //selenium setup
     public void seleniumSetup(){
         //System Property Setup
@@ -92,13 +94,22 @@ public class DaangnService {
             return false;
         }
     }
-    public List<DaangnVO> getDaangnSearchedData(String searchedItem){
-        // System.out.println(mapper.selectDaangnSearcedDatas(searchedItem).getArticle_title());
-        return mapper.selectDaangnSearcedDatas(searchedItem);
+
+    
+    public List<DaangnVO> getDaangnSearchedData(String searchedItem) throws IOException{
+        
+        List <DaangnVO> searchedData = mapper.selectDaangnSearcedDatas(searchedItem);
+        if(searchedData.isEmpty()){
+            updateDaangnSearchedData(searchedItem, "getDaangnSearchedData"); 
+            searchedData = mapper.selectDaangnSearcedDatas(searchedItem);           
+        }
+        return searchedData;
+        
     }
     public void setDaangnSearchedData(String searchedItem){
         
         chartObj.getDomainData(articlePriceList, maxItemPrice / 4, articleCount);
+
         System.out.println(">>>>>>>>>>>>>>>>>"+chartObj.xDomain.get(2));
 
         mapper.insertDaangnSearcedDatas(
@@ -123,8 +134,8 @@ public class DaangnService {
         
     }
 
-
-    public List<DaangnVO> updateDaangnSearchedData(String searchItem) throws IOException{
+    @Async("threadPoolTaskExecutor")
+    public List<DaangnVO> updateDaangnSearchedData(String searchItem, String callFunction) throws IOException{
         DAANGN_URL += searchItem;
         System.out.println(DAANGN_URL);
         seleniumSetup();
@@ -176,7 +187,9 @@ public class DaangnService {
         avrItemPrice /= articleCount;
         DAANGN_URL = "https://www.daangn.com/search/";
         setDaangnSearchedData(searchItem);
-        
+        if(callFunction == "getDaangnSearchedData"){
+            return null;
+        }
         return getDaangnSearchedData(searchItem);
     }
     public List<DaangnVO> searchItemPrice(){

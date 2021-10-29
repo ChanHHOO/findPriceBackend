@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 @RestController
 @RequestMapping("/api")
 public class GetItemInfoController {
@@ -37,7 +38,7 @@ public class GetItemInfoController {
 	@RequestMapping(method=RequestMethod.POST, value="/updateDaangnData")
 	public List<DaangnVO> updateDaangnData(@RequestBody DaangnVO daangnVO) throws IOException{
 		// requestbody에서 매핑해줌
-		return daangnService.updateDaangnSearchedData(daangnVO.getSearchItem());
+		return daangnService.updateDaangnSearchedData(daangnVO.getSearchItem(), "getDaangnSearchedData");
 	}
 
 	@CrossOrigin(origins="*", allowedHeaders = "*")
