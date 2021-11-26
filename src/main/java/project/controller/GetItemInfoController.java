@@ -30,6 +30,7 @@ public class GetItemInfoController {
 	@Autowired
 	DaangnService daangnService;
 
+
 	@Autowired
 	DaangnVO daangnData;
 	// proxy fix
@@ -38,13 +39,14 @@ public class GetItemInfoController {
 	@RequestMapping(method=RequestMethod.POST, value="/updateDaangnData")
 	public List<DaangnVO> updateDaangnData(@RequestBody DaangnVO daangnVO) throws IOException{
 		// requestbody에서 매핑해줌
-		return daangnService.updateDaangnSearchedData(daangnVO.getSearchItem(), "getDaangnSearchedData");
+		return daangnService.updateDaangnSearchedData(daangnVO.getSearchItem(), "null");
 	}
 
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST, value="/getDaangnData")
 	public List<DaangnVO> getDaangnData(@RequestBody DaangnVO daangnVO) throws IOException{
+		
 		return daangnService.getDaangnSearchedData(daangnVO.getSearchItem());
 	}
 }

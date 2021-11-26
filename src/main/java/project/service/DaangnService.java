@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -83,7 +84,7 @@ public class DaangnService {
     public void initialSet(){
         maxItemPrice = -1;
         minItemPrcie = Integer.MAX_VALUE;
-        
+        articleCount = 0;
     }
 
     public static boolean isInteger(String str) {
@@ -95,7 +96,12 @@ public class DaangnService {
         }
     }
 
-    
+    @Async("threadPoolTaskExecutor")
+    public void isCloseChrome(){
+        while(true){
+            
+        }
+    }
     public List<DaangnVO> getDaangnSearchedData(String searchedItem) throws IOException{
         
         List <DaangnVO> searchedData = mapper.selectDaangnSearcedDatas(searchedItem);
@@ -109,8 +115,6 @@ public class DaangnService {
     public void setDaangnSearchedData(String searchedItem){
         
         chartObj.getDomainData(articlePriceList, maxItemPrice / 4, articleCount);
-
-        System.out.println(">>>>>>>>>>>>>>>>>"+chartObj.xDomain.get(2));
 
         mapper.insertDaangnSearcedDatas(
             searchedItem, 
@@ -134,19 +138,19 @@ public class DaangnService {
         
     }
 
-    @Async("threadPoolTaskExecutor")
     public List<DaangnVO> updateDaangnSearchedData(String searchItem, String callFunction) throws IOException{
         DAANGN_URL += searchItem;
         System.out.println(DAANGN_URL);
         seleniumSetup();
+        initialSet();
 
         try{
             moreBtn = driver.findElement(By.className("more-btn"));
             for(int count = 0 ; count < 50; count++){
                 moreBtn.click();
             }
-            // 브라우저에 출력하는 시간을 고려하여 10초 대기.
-            Thread.sleep(10000);
+            // 브라우저에 출력하는 시간을 고려하여 2초 대기.
+            Thread.sleep(2000);
 
             articlePrice = driver.findElements(By.className("article-price"));
             articleImg = driver.findElements(By.className("card-photo"));
@@ -156,7 +160,12 @@ public class DaangnService {
         }catch(InterruptedException  e){
             DAANGN_URL = "https://www.daangn.com/search/";
             e.printStackTrace();
-        } finally{
+        }
+        catch(NoSuchWindowException e){
+            DAANGN_URL = "https://www.daangn.com/search/";
+            e.printStackTrace();
+        } 
+        finally{
             DAANGN_URL = "https://www.daangn.com/search/";
         }
 
