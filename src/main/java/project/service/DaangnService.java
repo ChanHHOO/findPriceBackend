@@ -51,6 +51,7 @@ public class DaangnService {
     int avrItemPrice = 0;
     int maxItemPrice = -1;
     int minItemPrcie = Integer.MAX_VALUE;
+    int updateFuncCallCount = 0;
     String maxImgStr;
     String minImgStr;
     String maxArticleTitle;
@@ -72,7 +73,7 @@ public class DaangnService {
         options.setCapability("ignoreProtectedModeSettings", true);
         
         //do not show browser and etc..
-        //options.addArguments("--headless"); // << without new browser
+        options.addArguments("--headless"); // << without new browser
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         
@@ -85,6 +86,10 @@ public class DaangnService {
         maxItemPrice = -1;
         minItemPrcie = Integer.MAX_VALUE;
         articleCount = 0;
+        updateFuncCallCount = 0;
+        articlePriceList = new ArrayList<Integer>();
+        chartObj = new ChartDataManufacture();
+        System.out.println("init!");
     }
 
     public static boolean isInteger(String str) {
@@ -96,12 +101,6 @@ public class DaangnService {
         }
     }
 
-    @Async("threadPoolTaskExecutor")
-    public void isCloseChrome(){
-        while(true){
-            
-        }
-    }
     public List<DaangnVO> getDaangnSearchedData(String searchedItem) throws IOException{
         
         List <DaangnVO> searchedData = mapper.selectDaangnSearcedDatas(searchedItem);
@@ -146,17 +145,17 @@ public class DaangnService {
 
         try{
             moreBtn = driver.findElement(By.className("more-btn"));
-            for(int count = 0 ; count < 50; count++){
+            for(int count = 0 ; count < 10; count++){
                 moreBtn.click();
             }
             // 브라우저에 출력하는 시간을 고려하여 2초 대기.
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             articlePrice = driver.findElements(By.className("article-price"));
             articleImg = driver.findElements(By.className("card-photo"));
             articleObj = driver.findElements(By.className("flea-market-article-link"));
             
-            
+        
         }catch(InterruptedException  e){
             DAANGN_URL = "https://www.daangn.com/search/";
             e.printStackTrace();
@@ -165,6 +164,19 @@ public class DaangnService {
             DAANGN_URL = "https://www.daangn.com/search/";
             e.printStackTrace();
         } 
+        catch (org.openqa.selenium.StaleElementReferenceException e) {
+            if (updateFuncCallCount <= 3){
+                updateFuncCallCount += 1;
+                DAANGN_URL = "https://www.daangn.com/search/";
+                updateDaangnSearchedData(searchItem, callFunction);
+            } 
+            else {
+                e.printStackTrace();
+            }
+        }
+        catch(java.lang.ArithmeticException e){
+            //
+        }
         finally{
             DAANGN_URL = "https://www.daangn.com/search/";
         }
