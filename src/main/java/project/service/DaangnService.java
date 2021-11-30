@@ -174,9 +174,6 @@ public class DaangnService {
                 e.printStackTrace();
             }
         }
-        catch(java.lang.ArithmeticException e){
-            //
-        }
         finally{
             DAANGN_URL = "https://www.daangn.com/search/";
         }
