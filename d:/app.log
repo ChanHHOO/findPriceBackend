@@ -76,3 +76,87 @@
 2021-12월-27 17:58:18 오후 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
 2021-12월-27 17:58:18 오후 [restartedMain] INFO  org.apache.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
 2021-12월-27 17:58:18 오후 [restartedMain] INFO  project.Application - Started Application in 4.642 seconds (JVM running for 618.39)
+2021-12월-27 18:03:31 오후 [Thread-28] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2021-12월-27 18:03:31 오후 [Thread-28] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2021-12월-27 18:03:31 오후 [Thread-28] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-12월-27 18:03:32 오후 [restartedMain] INFO  project.Application - Starting Application on gimchanhoui-MacBookPro.local with PID 60180 (/Users/chanhhoo/Desktop/workPlace/findPriceBackend/target/classes started by chanhhoo in /Users/chanhhoo/Desktop/workPlace/findPriceBackend)
+2021-12월-27 18:03:32 오후 [restartedMain] INFO  project.Application - No active profile set, falling back to default profiles: default
+2021-12월-27 18:03:32 오후 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-12월-27 18:03:32 오후 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-12월-27 18:03:32 오후 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.29
+2021-12월-27 18:03:32 오후 [localhost-startStop-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-12월-27 18:03:32 오후 [localhost-startStop-1] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 411 ms
+2021-12월-27 18:03:34 오후 [Forwarding newSession on session null to remote] INFO  org.openqa.selenium.remote.ProtocolHandshake - Detected dialect: W3C
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService  'threadPoolTaskExecutor'
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2d5cb843: startup date [Mon Dec 27 18:03:32 KST 2021]; root of context hierarchy
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/api/updateDaangnData],methods=[POST]}" onto public java.util.List<project.vo.DaangnVO> project.controller.GetItemInfoController.updateDaangnData(project.vo.DaangnVO) throws java.io.IOException
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/api/getDaangnData],methods=[POST]}" onto public java.util.List<project.vo.DaangnVO> project.controller.GetItemInfoController.getDaangnData(project.vo.DaangnVO) throws java.io.IOException
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  org.apache.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+2021-12월-27 18:03:36 오후 [restartedMain] INFO  project.Application - Started Application in 4.482 seconds (JVM running for 935.995)
+2021-12월-27 18:13:25 오후 [Thread-34] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2021-12월-27 18:13:25 오후 [Thread-34] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2021-12월-27 18:13:25 오후 [Thread-34] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-12월-27 18:13:26 오후 [restartedMain] INFO  project.Application - Starting Application on gimchanhoui-MacBookPro.local with PID 60180 (/Users/chanhhoo/Desktop/workPlace/findPriceBackend/target/classes started by chanhhoo in /Users/chanhhoo/Desktop/workPlace/findPriceBackend)
+2021-12월-27 18:13:26 오후 [restartedMain] INFO  project.Application - No active profile set, falling back to default profiles: default
+2021-12월-27 18:13:26 오후 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-12월-27 18:13:26 오후 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-12월-27 18:13:26 오후 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.29
+2021-12월-27 18:13:26 오후 [localhost-startStop-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-12월-27 18:13:26 오후 [localhost-startStop-1] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 442 ms
+2021-12월-27 18:13:27 오후 [Forwarding newSession on session null to remote] INFO  org.openqa.selenium.remote.ProtocolHandshake - Detected dialect: W3C
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService  'threadPoolTaskExecutor'
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@170d898: startup date [Mon Dec 27 18:13:26 KST 2021]; root of context hierarchy
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/api/updateDaangnData],methods=[POST]}" onto public java.util.List<project.vo.DaangnVO> project.controller.GetItemInfoController.updateDaangnData(project.vo.DaangnVO) throws java.io.IOException
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/api/getDaangnData],methods=[POST]}" onto public java.util.List<project.vo.DaangnVO> project.controller.GetItemInfoController.getDaangnData(project.vo.DaangnVO) throws java.io.IOException
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  org.apache.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+2021-12월-27 18:13:30 오후 [restartedMain] INFO  project.Application - Started Application in 4.55 seconds (JVM running for 1529.784)
+2021-12월-27 18:14:32 오후 [Thread-40] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2021-12월-27 18:14:32 오후 [Thread-40] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2021-12월-27 18:14:32 오후 [Thread-40] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-12월-27 18:14:32 오후 [restartedMain] INFO  project.Application - Starting Application on gimchanhoui-MacBookPro.local with PID 60180 (/Users/chanhhoo/Desktop/workPlace/findPriceBackend/target/classes started by chanhhoo in /Users/chanhhoo/Desktop/workPlace/findPriceBackend)
+2021-12월-27 18:14:32 오후 [restartedMain] INFO  project.Application - No active profile set, falling back to default profiles: default
+2021-12월-27 18:14:33 오후 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-12월-27 18:14:33 오후 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-12월-27 18:14:33 오후 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.29
+2021-12월-27 18:14:33 오후 [localhost-startStop-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-12월-27 18:14:33 오후 [localhost-startStop-1] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 493 ms
+2021-12월-27 18:14:34 오후 [Forwarding newSession on session null to remote] INFO  org.openqa.selenium.remote.ProtocolHandshake - Detected dialect: W3C
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService  'threadPoolTaskExecutor'
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@34a0b314: startup date [Mon Dec 27 18:14:32 KST 2021]; root of context hierarchy
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/api/updateDaangnData],methods=[POST]}" onto public java.util.List<project.vo.DaangnVO> project.controller.GetItemInfoController.updateDaangnData(project.vo.DaangnVO) throws java.io.IOException
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/api/getDaangnData],methods=[POST]}" onto public java.util.List<project.vo.DaangnVO> project.controller.GetItemInfoController.getDaangnData(project.vo.DaangnVO) throws java.io.IOException
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.web.servlet.handler.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  org.apache.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+2021-12월-27 18:14:37 오후 [restartedMain] INFO  project.Application - Started Application in 4.492 seconds (JVM running for 1596.646)
+2021-12월-27 18:14:57 오후 [Thread-51] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2021-12월-27 18:14:57 오후 [Thread-51] INFO  org.springframework.jmx.export.annotation.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2021-12월-27 18:14:57 오후 [Thread-51] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'threadPoolTaskExecutor'
