@@ -1,19 +1,13 @@
-package main.java.com.chanhhoo.findPrice.dto;
+package com.chanhhoo.findprice.dto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.study.project.domain.TestEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 public class DaangnDto{
-
-    private String itemTitle;
-    private String itemPrice;
-    public String searchItem;
-    public String searchCategory;
 
     private String article_id;
     private String article_title;
