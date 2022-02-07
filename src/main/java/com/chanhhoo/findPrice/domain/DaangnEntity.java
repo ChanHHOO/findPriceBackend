@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.chanhhoo.findprice.dto.DaangnDto;
+
 @Entity
 @NoArgsConstructor
 @Getter
@@ -75,7 +77,47 @@ public class DaangnEntity {
     @Column(columnDefinition = "integer", nullable = false)
     private int chartData_fourthY;
 
+    @Builder
+    public DaangnEntity(DaangnDto daangnDto){
+        //this.article_id = daangnDto.getArticle_id();
 
+        this.article_title = daangnDto.getArticle_maxArticleTitle();
+
+        this.article_avrPrice = daangnDto.getArticle_avrPrice();
+
+        this.article_maxPrice = daangnDto.getArticle_maxPrice();
+
+        this.article_minPrice = daangnDto.getArticle_minPrice();
+
+        this.article_maxImgStr = daangnDto.getArticle_maxImgStr();
+
+        this.article_minImgStr = daangnDto.getArticle_minImgStr();
+
+        this.article_maxArticleTitle = daangnDto.getArticle_maxArticleTitle();
+
+        this.article_minArticleTitle = daangnDto.getArticle_minArticleTitle();
+
+        this.article_count = daangnDto.getArticle_count();
+
+        this.article_updateTime = daangnDto.getArticle_updateTime();
+        
+        this.chartDomain_firstX = daangnDto.getChartDomain_firstX();
+        
+        this.chartDomain_secondX = daangnDto.getChartDomain_secondX();
+
+        this.chartDomain_thirdX = daangnDto.getChartDomain_thirdX();
+        
+        this.chartDomain_fourthX = daangnDto.getChartDomain_fourthX();
+        
+        this.chartData_firstY = daangnDto.getChartData_firstY();
+        
+        this.chartData_secondY = daangnDto.getChartData_secondY();
+
+        this.chartData_thirdY = daangnDto.getChartData_thirdY();
+
+        this.chartData_fourthY = daangnDto.getChartData_fourthY();
+        
+    }
     // @Builder
     // public TestEntity(String content){
     //     this.content = content;

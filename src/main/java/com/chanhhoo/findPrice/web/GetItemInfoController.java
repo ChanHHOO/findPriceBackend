@@ -29,13 +29,13 @@ public class GetItemInfoController {
 	// @Autowired
 	// DaangnVO daangnData;
 	// // proxy fix
-	// @CrossOrigin(origins="*", allowedHeaders = "*")
-	// @ResponseBody
-	// @RequestMapping(method=RequestMethod.POST, value="/updateDaangnData")
-	// public List<DaangnVO> updateDaangnData(@RequestBody DaangnVO daangnVO) throws IOException{
-	// 	// requestbody에서 매핑해줌
-	// 	return daangnService.updateDaangnSearchedData(daangnVO.getSearchItem(), "null");
-	// }
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@ResponseBody
+	@RequestMapping(method=RequestMethod.POST, value="/updateDaangnData")
+	public DaangnResponseDto updateDaangnData(@RequestBody DaangnDto daangnDto) throws IOException{
+		// requestbody에서 매핑해줌
+		return daangnService.updateDaangnSearchedData(daangnDto.getArticle_title(), "null");
+	}
 
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@ResponseBody
