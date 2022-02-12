@@ -81,7 +81,7 @@ public class DaangnEntity {
     public DaangnEntity(DaangnDto daangnDto){
         //this.article_id = daangnDto.getArticle_id();
 
-        this.article_title = daangnDto.getArticle_maxArticleTitle();
+        this.article_title = daangnDto.getArticle_title();
 
         this.article_avrPrice = daangnDto.getArticle_avrPrice();
 
@@ -118,18 +118,4 @@ public class DaangnEntity {
         this.chartData_fourthY = daangnDto.getChartData_fourthY();
         
     }
-    // @Builder
-    // public TestEntity(String content){
-    //     this.content = content;
-    // }
-    
-    // @Column(length = 500, nullable = false)
-    // private String title;
-
-    // public void update(Long id, String content){
-    //     this.content = content;
-    // }
-
-    // private String author;
-
 }

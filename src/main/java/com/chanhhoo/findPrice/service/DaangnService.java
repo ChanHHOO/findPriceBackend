@@ -17,7 +17,6 @@ import java.util.List;
 import java.beans.Transient;
 import java.io.IOException;
 import java.sql.Date;
-import java.util.Map.Entry;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +35,10 @@ import org.apache.logging.log4j.Logger;
 @Service
 public class DaangnService {
 
-    private DaangnDto daangnDto;
-
     @Autowired
     private DaangnRepository daangnRepository;
 
+    @Autowired
     public ChartDataManufacture chartObj;
 
     // WebDriver setup
@@ -52,7 +50,7 @@ public class DaangnService {
 
     // Properties setup
     public static String WEB_DRIVER_ID = "webdriver.chrome.driver";
-    public static String WEB_DRIVER_PATH = "chromedriver.exe";
+    public static String WEB_DRIVER_PATH = "chromedriver";
     private static String DAANGN_URL = "https://www.daangn.com/search/";
 
     // log
@@ -100,7 +98,6 @@ public class DaangnService {
         articleCount = 0;
         updateFuncCallCount = 0;
         articlePriceList = new ArrayList<Integer>();
-        System.out.println("init!");
     }
 
     public static boolean isInteger(String str) {
@@ -111,41 +108,34 @@ public class DaangnService {
             return false;
         }
     }
-
-    // public List<DaangnVO> getDaangnSearchedData(String searchedItem) throws IOException {
-
-    //     List<DaangnVO> searchedData = mapper.selectDaangnSearcedDatas(searchedItem);
-    //     if (searchedData.isEmpty()) {
-    //         updateDaangnSearchedData(searchedItem, "getDaangnSearchedData");
-    //         searchedData = mapper.selectDaangnSearcedDatas(searchedItem);
-    //     }
-    //     return searchedData;
-
-    // }
     
     @Transactional
     public DaangnResponseDto findByTitle(String searchedItem) throws IOException{
         List<DaangnEntity> daangnEntity = daangnRepository.findByArticleTitle(searchedItem);
+        // need entity -> responseDto
         if(daangnEntity.isEmpty()){
             updateDaangnSearchedData(searchedItem, "getDaangnSearchedData");
+            daangnEntity = daangnRepository.findByArticleTitle(searchedItem);
+            
         }
-        return null;
+        return new DaangnResponseDto(daangnEntity.get(0));
     }
 
     @Transactional
-    public void setDaangnSearchedData() {
-
+    public void save(DaangnDto daangnDto) {
         // insert code
         daangnRepository.save(daangnDto.toEntity());
-
+        System.out.println(daangnDto.getArticle_title() + "ㅁㄴㅇㅁㄴㅁㄴ");
         initialSet();
 
     }
 
-    public DaangnResponseDto updateDaangnSearchedData(String searchItem, String callFunction) throws IOException {
+    public DaangnResponseDto updateDaangnSearchedData(String searchItem, String callFunction) throws IOException, ArithmeticException{
         DAANGN_URL += searchItem;
         seleniumSetup();
         initialSet();
+
+        DaangnDto daangnDto = new DaangnDto();
 
         try {
             moreBtn = driver.findElement(By.className("more-btn"));
@@ -207,7 +197,6 @@ public class DaangnService {
         DAANGN_URL = "https://www.daangn.com/search/";
 
         // get chartdata
-        System.out.println(articlePriceList.get(1) + " " + maxItemPrice + " " + articleCount);
         chartObj.getDomainData(articlePriceList, maxItemPrice / 4, articleCount);
 
         // mapping data from web to dto
@@ -224,13 +213,13 @@ public class DaangnService {
         daangnDto.setChartDomain_firstX(chartObj.xDomain.get(0));
         daangnDto.setChartDomain_secondX(chartObj.xDomain.get(1));
         daangnDto.setChartDomain_thirdX(chartObj.xDomain.get(2));
-        daangnDto.setChartDomain_fourthX(chartObj.xDomain.get(4));
+        daangnDto.setChartDomain_fourthX(chartObj.xDomain.get(3));
         daangnDto.setChartData_firstY(chartObj.chartData.get(0));
         daangnDto.setChartData_secondY(chartObj.chartData.get(1));
         daangnDto.setChartData_thirdY(chartObj.chartData.get(2));
         daangnDto.setChartData_fourthY(chartObj.chartData.get(3));
 
-        setDaangnSearchedData();
+        save(daangnDto);
         if (callFunction == "getDaangnSearchedData") {
             return null;
         }
