@@ -1,8 +1,8 @@
-package com.chanhhoo.findprice.web;
+package com.chanhhoo.findPrice.web;
 
-import com.chanhhoo.findprice.dto.DaangnDto;
-import com.chanhhoo.findprice.dto.DaangnResponseDto;
-import com.chanhhoo.findprice.service.DaangnService;
+import com.chanhhoo.findPrice.dto.DaangnDto;
+import com.chanhhoo.findPrice.dto.DaangnResponseDto;
+import com.chanhhoo.findPrice.service.DaangnService;
 import java.util.List;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.chanhhoo.findprice;
+package com.chanhhoo.findPrice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

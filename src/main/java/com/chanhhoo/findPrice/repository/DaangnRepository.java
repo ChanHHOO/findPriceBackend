@@ -1,8 +1,8 @@
-package com.chanhhoo.findprice.repository;
+package com.chanhhoo.findPrice.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.chanhhoo.findprice.domain.DaangnEntity;
+import com.chanhhoo.findPrice.domain.DaangnEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

@@ -41,4 +41,5 @@ secrets.yml
 .gradletasknamecache
 .sts4-cache
 chromedriver.exe
-chromedriver1.exe
+chromedriver
+src/main/resources/application.properties

@@ -1,8 +1,8 @@
-package com.chanhhoo.findprice.dto;
+package com.chanhhoo.findPrice.dto;
 
 import java.sql.Date;
 
-import com.chanhhoo.findprice.domain.DaangnEntity;
+import com.chanhhoo.findPrice.domain.DaangnEntity;
 
 import lombok.Builder;
 import lombok.Getter;
