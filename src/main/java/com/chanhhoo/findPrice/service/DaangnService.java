@@ -1,14 +1,14 @@
-package com.chanhhoo.findprice.service;
+package com.chanhhoo.findPrice.service;
 
 // import project.mapper.DaangnMapper;
 // import project.vo.DaangnVO;
 // import project.service.ChartDataManufacture;
 
-import com.chanhhoo.findprice.dto.DaangnDto;
-import com.chanhhoo.findprice.dto.DaangnResponseDto;
-import com.chanhhoo.findprice.repository.DaangnRepository;
+import com.chanhhoo.findPrice.dto.DaangnDto;
+import com.chanhhoo.findPrice.dto.DaangnResponseDto;
+import com.chanhhoo.findPrice.repository.DaangnRepository;
 //import com.chanhhoo.findprice.repository.DaangnRepository;
-import com.chanhhoo.findprice.domain.DaangnEntity;
+import com.chanhhoo.findPrice.domain.DaangnEntity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,8 +38,7 @@ public class DaangnService {
     @Autowired
     private DaangnRepository daangnRepository;
 
-    @Autowired
-    public ChartDataManufacture chartObj;
+
 
     // WebDriver setup
     private static WebDriver driver;
@@ -136,6 +135,8 @@ public class DaangnService {
         initialSet();
 
         DaangnDto daangnDto = new DaangnDto();
+        
+        ChartDataManufacture chartObj = new ChartDataManufacture();
 
         try {
             moreBtn = driver.findElement(By.className("more-btn"));
@@ -218,7 +219,7 @@ public class DaangnService {
         daangnDto.setChartData_secondY(chartObj.chartData.get(1));
         daangnDto.setChartData_thirdY(chartObj.chartData.get(2));
         daangnDto.setChartData_fourthY(chartObj.chartData.get(3));
-
+        
         save(daangnDto);
         if (callFunction == "getDaangnSearchedData") {
             return null;

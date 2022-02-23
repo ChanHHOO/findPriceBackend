@@ -1,4 +1,4 @@
-package com.chanhhoo.findprice.service;
+package com.chanhhoo.findPrice.service;
 
 import java.util.HashMap;
 import java.util.Map;
